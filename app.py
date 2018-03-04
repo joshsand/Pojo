@@ -38,12 +38,8 @@ async def someoneSayPojo(message):
 		response = random.choice(responses)
 		await client.send_message(message.channel, response)
 		
-		
 @client.event
 async def on_ready():
-	print('Pojopy is ready and rhymes with jalopy')
-	print(client.user.name)
-	print(client.user.id)
-	print('-----')
+	print('Pojo awakes')
 	
 client.run('NDE5NzYzMjY1NjMyMDc1Nzc3.DX02ww.vj2GObEpqMeZEYswpbNzhwW7Zkw')
