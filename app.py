@@ -11,7 +11,20 @@ async def on_message(message):
 	await someoneSayPojo(message)
 	
 async def someoneSayPojo(message):
-	if "POJO" in message.content.upper():
+	# Let's see Jerran get around this one
+	pojos = ["POJO", "P_O_J_O", "P O J O", "P-O-J-O"]
+	
+	# Uppercase
+	msg = message.content.upper()
+	
+	# Remove double spaces
+	msg = ' '.join(msg.split())
+	
+	# Convert zeros to O's
+	msg = msg.replace('0', 'O')
+	
+	# If any of the pojo matches are in msg...
+	if any(pojo in msg for pojo in pojos):
 		responses = [
 				'Pojo?',
 				'Pooojooo',
