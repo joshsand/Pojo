@@ -38,7 +38,7 @@ class MessageHandler:
 		else:
 			response = "Available commands:"
 			for command in self.commands.keys():
-				response += '\n • `!' + command + '`'
+				response += '\n • `' + command + '`'
 			await self.client.send_message(message.channel, response)
 	
 	async def sup(self, message):
@@ -97,8 +97,8 @@ class MessageHandler:
 		# Remove double spaces
 		msg = ' '.join(msg.split())
 	
-		# Convert zeros to O's
-		msg = msg.replace('0', 'O')
+		# Convert zeros to o's
+		msg = msg.replace('0', 'o')
 	
 		# If any of the pojo matches are in msg...
 		if any(pojo in msg for pojo in pojos):
