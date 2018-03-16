@@ -1,4 +1,6 @@
-import random, re
+import random
+import re
+from app.handlers.services import *
 
 def rename(new_name):
 	"""Decorator to change __name__ on functions when !command doesn't match the function's name."""
@@ -16,7 +18,7 @@ class MessageHandler:
 		Returns: Help for individual command, or list of available commands
 		Arguments: A command name (no exclamation point) or none
 		"""
-		name, remainder = self.get_command_name(message)
+		name, remainder = self.split_by_command(message)
 		if remainder is not None:
 			command = remainder.split()[0]
 			
@@ -85,6 +87,19 @@ class MessageHandler:
 		response = random.choice(responses)
 		await self.client.send_message(message.channel, response)
 		
+	async def dice(self, message):
+		"""Let Pojo roll your D&D dice for you based on your provided equation. Format dice as multiplier + 'd' + number of sides (e.g., `1d20`). Supports addition and subtraction.
+		
+		Usage: `!dice 1d20`, `!dice 3d10`, `!dice 2d20 - 1d6  + 10`
+		Returns: Total, individual rolls (if more than one)
+		Arguments: Equation to parse (see usage examples)
+		"""
+		service = diceservice.DiceService()
+		command, remainder = self.split_by_command(message)
+		response = service.process(remainder)
+		await self.client.send_message(message.channel, response)
+		
+		
 	# GENERAL FILTERS
 
 	async def someone_say_pojo(self, message):
@@ -130,16 +145,16 @@ class MessageHandler:
 	
 	# TOOLS
 	
-	def get_command_name(self, message):
+	def split_by_command(self, message):
 		"""Return tuple of command (w/o '!') and remainder of message. (Either may be None.)"""
-		str = message.content
+		s = message.content
 		
 		# If first letter isn't !, not a command
-		if str[0] is not '!':
-			return None, str
+		if s[0] is not '!':
+			return None, s
 		else:
-			# Split str by spaces
-			words = str.split()
+			# Split string by spaces
+			words = s.split()
 			
 			# Get command name (no '!')
 			command_name = words[0][1:]
@@ -161,7 +176,7 @@ class MessageHandler:
 		self.filters = [self.someone_say_pojo]
 		
 		# Set up dict of commands
-		command_functions = [self.help, self.sup, self.eight_ball]
+		command_functions = [self.help, self.sup, self.eight_ball, self.dice]
 		command_names = [c.__name__ for c in command_functions]
 		self.commands = dict(zip(command_names, command_functions))
 		
@@ -170,7 +185,6 @@ class MessageHandler:
 		for f in self.filters:
 			await f(message)
 		
-		name, remainder = self.get_command_name(message)
+		name, remainder = self.split_by_command(message)
 		if (name is not None and name in self.commands):
 			await self.commands[name](message)
-			
