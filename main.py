@@ -1,5 +1,4 @@
 import discord
-import random
 from app.handlers.messagehandler import MessageHandler
 
 client = discord.Client()
