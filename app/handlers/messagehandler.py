@@ -5,6 +5,21 @@ from app.handlers.services import *
 class MessageHandler:
 	# DECORATORS
 
+	def general_filter(func):
+		"""Adds 'filter' attribute. Value irrelevant since only tested with hasattr()"""
+		func.filter = True
+		return func
+
+	def command(func):
+		"""Adds 'command' attribute. Value irrelevant since only tested with hasattr()"""
+		func.command = True
+		return func
+
+	def secret(func):
+		"""Adds 'secret' attribute. Value irrelevant since only tested with hasattr()"""
+		func.secret = True
+		return func
+
 	def rename(new_name):
 		"""Decorator to change __name__ on functions when !command doesn't match the function's name."""
 		def decorator(func):
@@ -12,14 +27,10 @@ class MessageHandler:
 			return func
 		return decorator
 
-	def secret(func):
-		"""Adds 'secret' attribute to functions to hide from !help list. Value irrelevant since only tested with hasattr()"""
-		func.secret = True
-		return func
-
 
 	# COMMANDS
 
+	@command
 	async def help(self, message):
 		"""Use to read instructions for any command. Call with no command specified to see a list of available commands.
 
@@ -54,6 +65,7 @@ class MessageHandler:
 				response += '\n • `' + command + '`'
 			await self.client.send_message(message.channel, response)
 
+	@command
 	async def sup(self, message):
 		"""A simple debug method. Say 'sup' to Pojo, Pojo responds 'Hey'.
 
@@ -65,6 +77,7 @@ class MessageHandler:
 		await self.client.send_message(message.channel, response)
 
 	@rename('8ball')
+	@command
 	async def eight_ball(self, message):
 		"""Ask a yes/no question to Pojo's Magic 8-Ball. (You don't actually have to type a question.)
 
@@ -98,6 +111,7 @@ class MessageHandler:
 		response = random.choice(responses)
 		await self.client.send_message(message.channel, response)
 
+	@command
 	async def dice(self, message):
 		"""Let Pojo roll your D&D dice for you based on your provided equation. Format dice as multiplier + 'd' + number of sides (e.g., `1d20`). Supports addition and subtraction.
 
@@ -111,6 +125,7 @@ class MessageHandler:
 		await self.client.send_message(message.channel, response)
 
 	@secret
+	@command
 	async def secret(self, message):
 		"""A simple secret debug method. Responds with 'Shhh'.
 
@@ -124,6 +139,7 @@ class MessageHandler:
 
 	# GENERAL FILTERS
 
+	@general_filter
 	async def someone_say_pojo(self, message):
 		# Let's see Jerran get around this one
 		pojos = ["pojo", "p_o_j_o", "p o j o", "p-o-j-o", "plain old java object"]
@@ -196,19 +212,22 @@ class MessageHandler:
 	def __init__(self, client):
 		self.client = client
 
-		# Set up list of filters
-		self.filters = [self.someone_say_pojo]
+		# Get all methods in class
+		functions = [getattr(MessageHandler, func) for func in dir(MessageHandler)]
 
-		# Set up dict of commands
-		command_functions = [self.help, self.sup, self.eight_ball, self.dice, self.secret]
+		# Store list of methods with 'filter' attribute (from @general_filter)
+		self.filters = [func for func in functions if hasattr(func, 'filter')]
+
+		# Set up dict of commands with methods with 'command' attribute (from @command)
+		command_functions = [func for func in functions if hasattr(func, 'command')]
 		command_names = [c.__name__ for c in command_functions]
 		self.commands = dict(zip(command_names, command_functions))
 
 	async def parse(self, message):
 		# Run filters
 		for func in self.filters:
-			await func(message)
+			await func(self, message)
 
 		name, remainder = self.split_by_command(message)
 		if (name is not None and name in self.commands):
-			await self.commands[name](message)
+			await self.commands[name](self, message)
