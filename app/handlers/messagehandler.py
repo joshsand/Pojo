@@ -136,6 +136,20 @@ class MessageHandler:
 		response = 'Shhh'
 		await self.client.send_message(message.channel, response)
 
+	@rename('iching')
+	@command
+	async def i_ching(self, message):
+		"""Consult the ancient Chinese oracle! Ask an open-ended (NOT yes or no) question about a method of action you are considering, the forces at work in a situation, how they develop and change, and how you relate to them. (You don't actually have to type a question) Pojo shuffles the digital yarrow stalks and gives you a hexagram (six lines representing yin or yang) and its associated text and any changing lines.
+
+		"Changing lines" refer to yin and yang lines in the hexagram that are subject to change. Each position contains specific directions and outcomes relevant to your situation. These changing lines flip to their opposite to create a "relating hexagram" containing further information about the context and outcome potential in your situation.
+
+		Usage: `!iching` or `!iching What will happen if I drop CST-201?` or `!iching What should my attitude be toward learning MongoDB?`
+		Returns: Your I Ching casting
+		Arguments: None (or, your question, though not actually necessary)
+		"""
+		service = ichingservice.IChingService()
+		response = service.response()
+		await self.client.send_message(message.channel, response)
 
 	# GENERAL FILTERS
 
