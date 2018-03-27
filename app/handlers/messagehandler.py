@@ -156,7 +156,7 @@ class MessageHandler:
 	@general_filter
 	async def someone_say_pojo(self, message):
 		# Let's see Jerran get around this one
-		pojos = ["pojo", "p_o_j_o", "p o j o", "p-o-j-o", "plain old java object"]
+		pojos = ["pojo", "p_o_j_o", "p o j o", "p-o-j-o", "plain old java object", "p()j()"]
 
 		# Lowercase
 		msg = message.content.lower()
