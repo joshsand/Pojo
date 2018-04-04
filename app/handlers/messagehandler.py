@@ -1,5 +1,6 @@
 import random
 import re
+import os
 from app.handlers.services import *
 
 class MessageHandler:
@@ -124,9 +125,10 @@ class MessageHandler:
 		response = service.process(remainder)
 		await self.client.send_message(message.channel, response)
 
+	@rename('secret')
 	@secret
 	@command
-	async def secret(self, message):
+	async def secret_command(self, message):
 		"""A simple secret debug method. Responds with 'Shhh'.
 
 		Usage: `!secret`
@@ -150,6 +152,21 @@ class MessageHandler:
 		service = ichingservice.IChingService()
 		response = service.response()
 		await self.client.send_message(message.channel, response)
+
+	@secret
+	@command
+	async def cat(self, message):
+		"""A test command to send a picture to a channel.
+
+		Usage: `!cat`
+		Returns: A spooky picture of Josh's cat
+		Arguments: None
+		"""
+		this_directory, this_filename = os.path.split(__file__)
+		data_filepath = os.path.join(this_directory, "services", "data", "cat", "cat.jpg")
+
+		with open(data_filepath, 'rb') as f:
+			await self.client.send_file(message.channel, f)
 
 	# GENERAL FILTERS
 

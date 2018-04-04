@@ -131,10 +131,10 @@ class IChingService:
 		return [i for i, line in enumerate(casting, start=1) if line in [Lines.OLDYIN, Lines.OLDYANG]]
 
 	def load_data(self):
-		"""Load JSON from data/i_ching.json into dict"""
+		"""Load JSON from data/iching/iching.json into dict"""
 		# Won't work if ever in distribution. Convert to use pkg_resources?
 		this_directory, this_filename = os.path.split(__file__)
-		data_filepath = os.path.join(this_directory, "data", "i_ching.json")
+		data_filepath = os.path.join(this_directory, "data", "iching", "iching.json")
 
 		with open(data_filepath, encoding='utf-8') as f:
 			data = json.load(f)
