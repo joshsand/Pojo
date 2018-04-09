@@ -1,7 +1,18 @@
 import random
 import re
 import os
+from io import BytesIO
 from app.handlers.services import *
+
+# ERRORS
+
+class Error(Exception):
+	"""Generic error to extend"""
+	pass
+
+class MalformedArgumentError(Error):
+	"""The message has incorrectly formatted arguments."""
+	pass
 
 class MessageHandler:
 	# DECORATORS
@@ -168,6 +179,65 @@ class MessageHandler:
 		with open(data_filepath, 'rb') as f:
 			await self.client.send_file(message.channel, f)
 
+	@command
+	async def tarot(self, message):
+		"""Let Pojo flip your tarot cards! Supports multiple decks and spreads, with options for definitions, reversed cards, and pip cards.
+
+		Usage: `!tarot` or `!tarot spread=celtic-cross pips=false deck=cbd-marseille`
+		Returns: An image of your tarot spread of choice, with optional definitions.
+		Arguments:
+		• `deck`: The tarot deck to use. Options: `tarot-waite-smith` (the iconic deck) [default], `cbd-marseille` (clean restoration of classic 1700's European design), `ancient-italian` (detailed floral late-1800's deck)
+		• `spread`: The arrangement of cards. Options: `single` (a single card), `three-card` (three cards in a row...widely applicable) [default], `celtic-cross` (the elaborate and popular 10-card spread)
+		• `definitions`: Whether Pojo sends follow-up card definitions. Options: `true` [default], `false` (for pros)
+		• `reversals`: Whether reading includes reversed/inverted cards. Options: `true`, `false` [default]
+		• `pips`: Whether reading includes pips (standard numbered and face cards). Options `true` [default], `false`
+		"""
+		# Send "typing" because this one can take a few seconds
+		await self.client.send_typing(message.channel)
+
+		# Initialize responses
+		command, remainder = self.split_by_command(message)
+		kwargs = {}
+
+		response = None
+		response_message = ""
+		response_image = None
+
+		# Parse arguments
+		try:
+			if remainder is not None:
+				kwargs = self.args_to_dict(remainder)
+		except MalformedArgumentError:
+			response_message = "Arguments could not be parsed. For formatting help, use `!help tarot`."
+			kwargs = None
+
+		# Attempt response
+		if kwargs is not None:
+			service = tarotservice.TarotService()
+			try:
+				response = service.response(**kwargs)
+			except TypeError:
+				response_message = "Received an unexpected argument. For all allowed arguments, use `!help tarot`."
+
+			# Get message and image from response model
+			if response is not None:
+				response_message = response.message
+				response_image = response.image
+
+		# Send image (if received)
+		if response_image is not None:
+			# Convert to BytesIO file-like object (necessary to send through Discord.py's send_file())
+			bytes = BytesIO()
+			response_image.save(bytes, 'PNG')
+			bytes.name = 'tarot.png'
+			bytes.seek(0)
+
+			await self.client.send_file(message.channel, bytes)
+
+		# Send response text (if any)
+		if response_message != '':
+			await self.client.send_message(message.channel, response_message)
+
 	# GENERAL FILTERS
 
 	@general_filter
@@ -236,6 +306,40 @@ class MessageHandler:
 				remainder = None
 
 			return command_name, remainder
+
+	def args_to_dict(self, s):
+		"""Convert "key1=value2 key2=value2"-style formatted arguments to dict"""
+		args = {}
+
+		# Split string by spaces
+		for arg in s.split(' '):
+			# Return error if no ='s (stray words) or too many
+			if arg.count('=') is not 1:
+				raise MalformedArgumentError()
+
+			# Split by equal sign for key and value
+			k, v = arg.split('=')
+
+			# Return error if either side empty (i.e., = at begin/end)
+			if k is '' or v is '':
+				raise MalformedArgumentError()
+
+			# Convert to boolean
+			if v.lower() == 'true':
+				v = True
+			elif v.lower() == 'false':
+				v = False
+			# If not boolean, maybe int?
+			else:
+				try:
+					v = int(v)
+				except ValueError:
+					pass
+
+			# Add key/value to dict
+			args[k] = v
+
+		return args
 
 
 	# RUNNING

@@ -1,0 +1,548 @@
+[
+    {
+        "meaning": "Beginnings - Innocence - Spontaneity - Folly - Immaturity - Levity",
+        "number": 0,
+        "id": 1,
+        "suit": "Major",
+        "name": "The Fool"
+    },
+    {
+        "meaning": "Action - Skill - Concentration - Ability - Spontaneity - Craft - Completion",
+        "number": 1,
+        "id": 2,
+        "suit": "Major",
+        "name": "The Magician"
+    },
+    {
+        "meaning": "Wisdom - Intuition - Mystery - Subconscious - Knowledge - Sageness",
+        "number": 2,
+        "id": 3,
+        "suit": "Major",
+        "name": "The High Priestess"
+    },
+    {
+        "meaning": "Fertility - Femininity - Attainment - Beauty - Nature - Abundance",
+        "number": 3,
+        "id": 4,
+        "suit": "Major",
+        "name": "The Empress"
+    },
+    {
+        "meaning": "Leadership - Stability - Authority - Father-figure - Worldly power - Perseverance",
+        "number": 4,
+        "id": 5,
+        "suit": "Major",
+        "name": "The Emperor"
+    },
+    {
+        "meaning": "Religion - Tradition - Conformity - Ritual - Alliance - Servitude",
+        "number": 5,
+        "id": 6,
+        "suit": "Major",
+        "name": "The Hierophant"
+    },
+    {
+        "meaning": "Love - Union - Compatibility - Harmony - Alignment - Putting to test - Speculation",
+        "number": 6,
+        "id": 7,
+        "suit": "Major",
+        "name": "The Lovers"
+    },
+    {
+        "meaning": "Drive - Willpower - Victory - Assertion - Control - Determination - Conquest",
+        "number": 7,
+        "id": 8,
+        "suit": "Major",
+        "name": "The Chariot"
+    },
+    {
+        "meaning": "Justice - Law - Moderation - Neutrality - Integrity - Truth - Balance",
+        "number": 8,
+        "id": 9,
+        "suit": "Major",
+        "name": "Justice"
+    },
+    {
+        "meaning": "Introspection - Solitude - Inner wisdom - Withdrawal - Soul-searching",
+        "number": 9,
+        "id": 10,
+        "suit": "Major",
+        "name": "The Hermit"
+    },
+    {
+        "meaning": "Cycle of life - Chance - Karma - Destiny - Happenstance - Turning point",
+        "number": 10,
+        "id": 11,
+        "suit": "Major",
+        "name": "Wheel of Fortune"
+    },
+    {
+        "meaning": "Strength - Control - Courage - Fortitude - Confidence - Intensity",
+        "number": 11,
+        "id": 12,
+        "suit": "Major",
+        "name": "Strength"
+    },
+    {
+        "meaning": "Acceptance - Apotheosis - Letting go - Sacrifice - Readjustment - Rebirth",
+        "number": 12,
+        "id": 13,
+        "suit": "Major",
+        "name": "The Hanged Man"
+    },
+    {
+        "meaning": "Transition - End - Clearing for transformation - Death of familiar - Upheaval - New era",
+        "number": 13,
+        "id": 14,
+        "suit": "Major",
+        "name": "Death"
+    },
+    {
+        "meaning": "Balance - Moderation - Self-control - Fusion - Frugality - Union",
+        "number": 14,
+        "id": 15,
+        "suit": "Major",
+        "name": "Temperance"
+    },
+    {
+        "meaning": "Enslavement - Self-punishment - Addiction - Materialism - Bondage",
+        "number": 15,
+        "id": 16,
+        "suit": "Major",
+        "name": "The Devil"
+    },
+    {
+        "meaning": "Overthrow - Breakdown - Havoc - Instability - Sudden change - Revelation",
+        "number": 16,
+        "id": 17,
+        "suit": "Major",
+        "name": "The Tower"
+    },
+    {
+        "meaning": "Hope - Serenity - Faith - Good omen - Optimism - Promise",
+        "number": 17,
+        "id": 18,
+        "suit": "Major",
+        "name": "The Star"
+    },
+    {
+        "meaning": "Deception - Illusion - Dishonesty - Unknown - Unforeseen peril - Insincerity",
+        "number": 18,
+        "id": 19,
+        "suit": "Major",
+        "name": "The Moon"
+    },
+    {
+        "meaning": "Success - Satisfaction - Contentment - Comfort - Reward - Vitality - Wealth",
+        "number": 19,
+        "id": 20,
+        "suit": "Major",
+        "name": "The Sun"
+    },
+    {
+        "meaning": "Judgment - Rebirth - Release - Readjustment - Absolution - Ascension",
+        "number": 20,
+        "id": 21,
+        "suit": "Major",
+        "name": "Judgment"
+    },
+    {
+        "meaning": "Attainment - Completion - Perfection - Culmination - Conclusion - Contentment",
+        "number": 21,
+        "id": 22,
+        "suit": "Major",
+        "name": "The World"
+    },
+    {
+        "meaning": "Undertaking - Beginnings - Enterprise - Invention",
+        "number": 1,
+        "id": 23,
+        "suit": "Wands",
+        "name": "Ace of Wands"
+    },
+    {
+        "meaning": "Planner - Mature - Decision-maker - Progress - Discovery",
+        "number": 2,
+        "id": 24,
+        "suit": "Wands",
+        "name": "Two of Wands"
+    },
+    {
+        "meaning": "Enterprise - Prospecting - Preparation - Foresight",
+        "number": 3,
+        "id": 25,
+        "suit": "Wands",
+        "name": "Three of Wands"
+    },
+    {
+        "meaning": "Society - Harmony - Peace - Celebration - Home",
+        "number": 4,
+        "id": 26,
+        "suit": "Wands",
+        "name": "Four of Wands"
+    },
+    {
+        "meaning": "Struggle - Conflict - Dissatisfaction",
+        "number": 5,
+        "id": 27,
+        "suit": "Wands",
+        "name": "Five of Wands"
+    },
+    {
+        "meaning": "Triumph - Conquest - Recognition",
+        "number": 6,
+        "id": 28,
+        "suit": "Wands",
+        "name": "Six of Wands"
+    },
+    {
+        "meaning": "Competition - Surmounting odds - Superiority",
+        "number": 7,
+        "id": 29,
+        "suit": "Wands",
+        "name": "Seven of Wands"
+    },
+    {
+        "meaning": "Speed - Sudden progress - Change",
+        "number": 8,
+        "id": 30,
+        "suit": "Wands",
+        "name": "Eight of Wands"
+    },
+    {
+        "meaning": "Defensive stance - Anticipation of hardship - Discipline",
+        "number": 9,
+        "id": 31,
+        "suit": "Wands",
+        "name": "Nine of Wands"
+    },
+    {
+        "meaning": "Burden - Stress - Pressure",
+        "number": 10,
+        "id": 32,
+        "suit": "Wands",
+        "name": "Ten of Wands"
+    },
+    {
+        "meaning": "Explorer - Pure intentions - Enthusiasm",
+        "number": 11,
+        "id": 33,
+        "suit": "Wands",
+        "name": "Page of Wands"
+    },
+    {
+        "meaning": "Adventurer - Impulsiveness - Journey into unknown",
+        "number": 12,
+        "id": 34,
+        "suit": "Wands",
+        "name": "Knight of Wands"
+    },
+    {
+        "meaning": "Warmth - Determination - Loving",
+        "number": 13,
+        "id": 35,
+        "suit": "Wands",
+        "name": "Queen of Wands"
+    },
+    {
+        "meaning": "Devoted - Entrepreneur - Natural leader - Vision",
+        "number": 14,
+        "id": 36,
+        "suit": "Wands",
+        "name": "King of Wands"
+    },
+    {
+        "meaning": "Abundance - Love - Overwhelming emotion - Happiness",
+        "number": 1,
+        "id": 37,
+        "suit": "Cups",
+        "name": "Ace of Cups"
+    },
+    {
+        "meaning": "Partnership - Union - Cooperation - Love",
+        "number": 2,
+        "id": 38,
+        "suit": "Cups",
+        "name": "Two of Cups"
+    },
+    {
+        "meaning": "Celebration - Resolution - Friendship - Community",
+        "number": 3,
+        "id": 39,
+        "suit": "Cups",
+        "name": "Three of Cups"
+    },
+    {
+        "meaning": "Apathy - Weariness - Disappointment",
+        "number": 4,
+        "id": 40,
+        "suit": "Cups",
+        "name": "Four of Cups"
+    },
+    {
+        "meaning": "Partial loss - Bereavement - Imperfection",
+        "number": 5,
+        "id": 41,
+        "suit": "Cups",
+        "name": "Five of Cups"
+    },
+    {
+        "meaning": "Nostalgia - Childhood - Things passed - Memories",
+        "number": 6,
+        "id": 42,
+        "suit": "Cups",
+        "name": "Six of Cups"
+    },
+    {
+        "meaning": "Daydreams - Illusion - Wishful thinking - Choices",
+        "number": 7,
+        "id": 43,
+        "suit": "Cups",
+        "name": "Seven of Cups"
+    },
+    {
+        "meaning": "Departure - Giving up - Abandonment - Disappointment",
+        "number": 8,
+        "id": 44,
+        "suit": "Cups",
+        "name": "Eight of Cups"
+    },
+    {
+        "meaning": "Abundance - Success - Wealth - Pride",
+        "number": 9,
+        "id": 45,
+        "suit": "Cups",
+        "name": "Nine of Cups"
+    },
+    {
+        "meaning": "Harmony - Joy - Peace - Family",
+        "number": 10,
+        "id": 46,
+        "suit": "Cups",
+        "name": "Ten of Cups"
+    },
+    {
+        "meaning": "Helpful person - Loyal - Studious - Dedicated",
+        "number": 11,
+        "id": 47,
+        "suit": "Cups",
+        "name": "Page of Cups"
+    },
+    {
+        "meaning": "Idealist - Romantic - Charm - Invitation - Proposal",
+        "number": 12,
+        "id": 48,
+        "suit": "Cups",
+        "name": "Knight of Cups"
+    },
+    {
+        "meaning": "Calm - Compassionate - Warm-hearted and fair person",
+        "number": 13,
+        "id": 49,
+        "suit": "Cups",
+        "name": "Queen of Cups"
+    },
+    {
+        "meaning": "Emotional balance - Responsible - Generosity - Creativity - Reliable",
+        "number": 14,
+        "id": 50,
+        "suit": "Cups",
+        "name": "King of Cups"
+    },
+    {
+        "meaning": "Determination - Force - Raw power - Mental clarity",
+        "number": 1,
+        "id": 51,
+        "suit": "Swords",
+        "name": "Ace of Swords"
+    },
+    {
+        "meaning": "Choices - Indecision - Stalemate",
+        "number": 2,
+        "id": 52,
+        "suit": "Swords",
+        "name": "Two of Swords"
+    },
+    {
+        "meaning": "Sorrow - Seperation - Grief - Heartbreak",
+        "number": 3,
+        "id": 53,
+        "suit": "Swords",
+        "name": "Three of Swords"
+    },
+    {
+        "meaning": "Rest - Recuperation - Retreat",
+        "number": 4,
+        "id": 54,
+        "suit": "Swords",
+        "name": "Four of Swords"
+    },
+    {
+        "meaning": "Ruthless victory - Selfishness - Making enemies - Expense of others",
+        "number": 5,
+        "id": 55,
+        "suit": "Swords",
+        "name": "Five of Swords"
+    },
+    {
+        "meaning": "Voyage - Necessary departure - Transition",
+        "number": 6,
+        "id": 56,
+        "suit": "Swords",
+        "name": "Six of Swords"
+    },
+    {
+        "meaning": "Betrayal - Deception - Success through immoral means",
+        "number": 7,
+        "id": 57,
+        "suit": "Swords",
+        "name": "Seven of Swords"
+    },
+    {
+        "meaning": "Imprisonment - Turmoil - Crisis",
+        "number": 8,
+        "id": 58,
+        "suit": "Swords",
+        "name": "Eight of Swords"
+    },
+    {
+        "meaning": "Anxiety - Depression - Despair - Concern",
+        "number": 9,
+        "id": 59,
+        "suit": "Swords",
+        "name": "Nine of Swords"
+    },
+    {
+        "meaning": "Defeat - Pain - Loss - Anguish",
+        "number": 10,
+        "id": 60,
+        "suit": "Swords",
+        "name": "Ten of Swords"
+    },
+    {
+        "meaning": "Curious - Restless - Perceptive",
+        "number": 11,
+        "id": 61,
+        "suit": "Swords",
+        "name": "Page of Swords"
+    },
+    {
+        "meaning": "Fearless - Mad dash - Heroism - Hastiness",
+        "number": 12,
+        "id": 62,
+        "suit": "Swords",
+        "name": "Knight of Swords"
+    },
+    {
+        "meaning": "Quick witted person - Keen - Bearer of sadness - Mourning",
+        "number": 13,
+        "id": 63,
+        "suit": "Swords",
+        "name": "Queen of Swords"
+    },
+    {
+        "meaning": "Authoritative - Commanding - Analytical - Powerful",
+        "number": 14,
+        "id": 64,
+        "suit": "Swords",
+        "name": "King of Swords"
+    },
+    {
+        "meaning": "Prosperity - Riches - Opportunity",
+        "number": 1,
+        "id": 65,
+        "suit": "Coins",
+        "name": "Ace of Coins"
+    },
+    {
+        "meaning": "New troubles - Flexibility - Balancing act",
+        "number": 2,
+        "id": 66,
+        "suit": "Coins",
+        "name": "Two of Coins"
+    },
+    {
+        "meaning": "Skill - Artistic mastery - Dignity",
+        "number": 3,
+        "id": 67,
+        "suit": "Coins",
+        "name": "Three of Coins"
+    },
+    {
+        "meaning": "Materialism - Hoarding - Control",
+        "number": 4,
+        "id": 68,
+        "suit": "Coins",
+        "name": "Four of Coins"
+    },
+    {
+        "meaning": "Loss - Insecurity - Poverty",
+        "number": 5,
+        "id": 69,
+        "suit": "Coins",
+        "name": "Five of Coins"
+    },
+    {
+        "meaning": "Charity - Kindness - Selflessness",
+        "number": 6,
+        "id": 70,
+        "suit": "Coins",
+        "name": "Six of Coins"
+    },
+    {
+        "meaning": "Cultivation - Reward - Hard work - Profit",
+        "number": 7,
+        "id": 71,
+        "suit": "Coins",
+        "name": "Seven of Coins"
+    },
+    {
+        "meaning": "Education - Dedication - Apprenticeship",
+        "number": 8,
+        "id": 72,
+        "suit": "Coins",
+        "name": "Eight of Coins"
+    },
+    {
+        "meaning": "Well-being - Luxury - Discernment",
+        "number": 9,
+        "id": 73,
+        "suit": "Coins",
+        "name": "Nine of Coins"
+    },
+    {
+        "meaning": "Wealth - Family - Retirement - Safety",
+        "number": 10,
+        "id": 74,
+        "suit": "Coins",
+        "name": "Ten of Coins"
+    },
+    {
+        "meaning": "Student - Dedication - Concentration - New work or responsibility",
+        "number": 11,
+        "id": 75,
+        "suit": "Coins",
+        "name": "Page of Coins"
+    },
+    {
+        "meaning": "Persistent person - Serious - Conservative - Guarded",
+        "number": 12,
+        "id": 76,
+        "suit": "Coins",
+        "name": "Knight of Coins"
+    },
+    {
+        "meaning": "Grace - Homely - Down-to-earth - Motherly - Comfort",
+        "number": 13,
+        "id": 77,
+        "suit": "Coins",
+        "name": "Queen of Coins"
+    },
+    {
+        "meaning": "Businessman - Security - Experienced leader - Control - Practical wisdom",
+        "number": 14,
+        "id": 78,
+        "suit": "Coins",
+        "name": "King of Coins"
+    }
+]

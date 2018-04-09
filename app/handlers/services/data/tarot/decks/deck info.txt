@@ -1,0 +1,23 @@
+IF ADDING A DECK:
+Add to tarotservice.py manually, make sure folder name matches.
+Number cards 1.jpg through 78.jpg.
+
+Order:
+1: The Fool
+2-22: Major Arcana
+23-36: Wands
+37-50: Cups
+51-64: Swords
+65-78: Coins
+Make sure 9.jpg is Justice and 12.jpg is Strength to match tarot.json data. Number will not be visible to the user anywhere.
+
+DECKS:
+ancient-italian:
+This Lo Scarabeo's "Ancient Italian" deck. Apparently a bastard deck composited from several 1800's Italian decks. Images unmodified, source unknown: I first downloaded these years ago to make my tarot-of-the-day browser homepage.
+
+rider-waite-smith:
+Photoshop-modified (color and imperfections) and batch-cropped (if that wasn't obvious) scan of original 1910 Pamela-A deck, originals available here: http://muzendo.jp/blog/?p=19
+Note: I've swapped 9.jpg and 12.jpg to match traditional tarot decks. Number never actually visible through Pojo, but keeps it synchronized with JSON data.
+
+cbd-marseille:
+Yaov Ben-Dov's update of the Conver Marseille deck. Images unmodified. Freely distributed by (late...) author: http://www.cbdtarot.com/download/

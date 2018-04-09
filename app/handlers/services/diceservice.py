@@ -100,9 +100,9 @@ class DiceService:
 				# If not integer or die, raise error
 				else:
 					raise MalformedInputError()
-		except MalformedInputError as e:
+		except MalformedInputError:
 			return 'Could not parse input. For formatting help, use `!help dice`.'
-		except ExcessiveQuantityError as e:
+		except ExcessiveQuantityError:
 			return "Please use multipliers below 100 and die faces below 1000."
 
 		# Build response
