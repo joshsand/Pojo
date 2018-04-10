@@ -16,6 +16,8 @@ Will be stored as [YIN, YANG, YANG]. Everything will follow this order except
 for printing the hexagram itself.
 '''
 
+# CLASSES
+
 class Line:
 	"""The base element to a casting. Default lines set up in Lines 'enumerator.'"""
 	def __init__(self, name, num, old, yin, probability):
@@ -33,7 +35,7 @@ class Lines:
 	OLDYANG = Line(name='Old Yang', num=9, old=True, yin=False, probability=3)
 
 class Trigrams(Enum):
-	"""Simulating an enumerator using class variables for all 8 trigrams"""
+	"""An actual enumerator for all 8 trigrams"""
 	HEAVEN = 1
 	LAKE = 2
 	FIRE = 3
@@ -46,7 +48,6 @@ class Trigrams(Enum):
 class IChingService:
 	def __init__(self):
 		"""Sets up dictionaries for later methods"""
-
 		# Trigrams
 		yin = True
 		yang = False
@@ -212,7 +213,7 @@ class IChingService:
 			response += 'For commentary and interpretation:\n'
 			response += 'http://www.akirarabelais.com/i/i.html#{}'.format(relating_hexagram_id)
 		else:
-			# Add commentary link for sole hexagram
+			# Add commentary link for sole hexagram (no changing lines)
 			response += link
 
 		return response

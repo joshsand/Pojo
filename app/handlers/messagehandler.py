@@ -14,7 +14,11 @@ class MalformedArgumentError(Error):
 	"""The message has incorrectly formatted arguments."""
 	pass
 
+
+# CLASS
+
 class MessageHandler:
+
 	# DECORATORS
 
 	def general_filter(func):
@@ -51,7 +55,7 @@ class MessageHandler:
 		Arguments: A command name (no exclamation point) or none
 		"""
 		name, remainder = self.split_by_command(message)
-		# If a command name to look up is given
+		# If there's a command name to look up
 		if remainder is not None:
 			command = remainder.split()[0]
 
@@ -186,11 +190,11 @@ class MessageHandler:
 		Usage: `!tarot` or `!tarot spread=celtic-cross pips=false deck=cbd-marseille`
 		Returns: An image of your tarot spread of choice, with optional definitions.
 		Arguments:
-		• `deck`: The tarot deck to use. Options: `tarot-waite-smith` (the iconic deck) [default], `cbd-marseille` (clean restoration of classic 1700's European design), `ancient-italian` (detailed floral late-1800's deck)
-		• `spread`: The arrangement of cards. Options: `single` (a single card), `three-card` (three cards in a row...widely applicable) [default], `celtic-cross` (the elaborate and popular 10-card spread)
-		• `definitions`: Whether Pojo sends follow-up card definitions. Options: `true` [default], `false` (for pros)
-		• `reversals`: Whether reading includes reversed/inverted cards. Options: `true`, `false` [default]
-		• `pips`: Whether reading includes pips (standard numbered and face cards). Options `true` [default], `false`
+		 • `deck`: The tarot deck to use. Options: `tarot-waite-smith` (the iconic deck) [default], `cbd-marseille` (clean restoration of classic 1700's European design), `ancient-italian` (detailed floral late-1800's deck)
+		 • `spread`: The arrangement of cards. Options: `single` (a single card), `three-card` (three cards in a row...widely applicable) [default], `celtic-cross` (the elaborate and popular 10-card spread)
+		 • `definitions`: Whether Pojo sends follow-up card definitions. Options: `true` [default], `false` (for pros)
+		 • `reversals`: Whether reading includes reversed/inverted cards. Options: `true`, `false` [default]
+		 • `pips`: Whether reading includes pips (standard numbered and face cards). Options `true` [default], `false`
 		"""
 		# Send "typing" because this one can take a few seconds
 		await self.client.send_typing(message.channel)
@@ -242,6 +246,7 @@ class MessageHandler:
 
 	@general_filter
 	async def someone_say_pojo(self, message):
+		"""Responds with random message to variations of 'Pojo'."""
 		# Let's see Jerran get around this one
 		pojos = ["pojo", "p_o_j_o", "p o j o", "p-o-j-o", "plain old java object", "p()j()"]
 
@@ -282,6 +287,16 @@ class MessageHandler:
 			response = random.choice(responses)
 			await self.client.send_message(message.channel, response)
 
+	@general_filter
+	async def greater_good(self, message):
+		"""Respond to 'greater good' so I don't have to."""
+		# Lowercase
+		msg = message.content.lower()
+
+		# If 'greater good' is found, respond in kind
+		if 'greater good' in msg:
+			response = '*The greater good*'
+			await self.client.send_message(message.channel, response)
 
 	# TOOLS
 

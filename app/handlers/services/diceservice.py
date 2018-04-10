@@ -1,6 +1,8 @@
 import re
 from random import randint
 
+# ERRORS
+
 class Error(Exception):
 	"""Generic error to extend"""
 	pass
@@ -12,6 +14,9 @@ class ExcessiveQuantityError(Error):
 class MalformedInputError(Error):
 	"""The user's string is no good."""
 	pass
+
+
+# CLASS
 
 class DiceService:
 	def expected_characters(self, s):
@@ -92,7 +97,7 @@ class DiceService:
 				# (positive_segment not necessary because int() handles negatives)
 				if self.is_int(segment):
 					total += int(segment)
-				# If die, calculate and rolls list and add sum to total
+				# If die, calculate rolls list and add sum to total
 				elif self.is_die(positive_segment):
 					rolls = self.calculate_die_rolls(positive_segment)
 					total_rolls += rolls
@@ -128,5 +133,8 @@ class DiceService:
 		# Add snark if no dice
 		if len(total_rolls) is 0:
 			response += '\nAlways glad to help!'
+		# Add 'nice' if dice total is cool number (and user didn't just type number in)
+		elif total in [69, 420, 666]:
+			response += "\n\nNice."
 
 		return response

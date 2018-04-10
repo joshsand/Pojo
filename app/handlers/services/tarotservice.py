@@ -21,7 +21,8 @@ class BadTypeError(Error):
 	"""The provided argument is not the expected type. (Often a non-boolean instead of a boolean.)"""
 	pass
 
-# ANNOTATIONS
+
+# DECORATORS
 
 def card_count(i):
 	"""Sets amount of cards needed by each spread"""
@@ -29,6 +30,7 @@ def card_count(i):
 		func.card_count = i
 		return func
 	return decorator
+
 
 # CLASSES
 
@@ -59,6 +61,8 @@ class TarotService:
 			'three-card': self.three_card,
 			'celtic-cross': self.celtic_cross
 		}
+
+	# SPREADS
 
 	@card_count(1)
 	def single(self, cards):
@@ -171,6 +175,8 @@ class TarotService:
 
 		return ResponseModel(message, output_img)
 
+	# BUILDING RANDOM CARDS
+
 	def draw_cards(self, amount, deck, reversals, pips):
 		"""Build list of desired amount of random Cards with attached id, reversed boolean, description, and image (flipped if reversed)."""
 		# Grab all 78 cards or first 21 if 'pips' are included
@@ -244,6 +250,8 @@ class TarotService:
 		# Make sure all booleans are booleans
 		if not all(isinstance(b, bool) for b in [definitions, reversals, pips]):
 			raise BadTypeError()
+
+	# RUNNING
 
 	def response(self, deck='rider-waite-smith', spread='three-card', definitions=True, reversals=False, pips=True):
 		"""Build ResponseModel of message and generated PIL image for random cards based on arguments."""
