@@ -186,9 +186,10 @@ class TarotService:
 		# Combine descriptions with "#X" in front of name and slot description before first '\n'
 		descriptions = []
 		for i, card in enumerate(cards):
-			name, meaning = card.description.split('\n')
+			first_newline = card.description.index('\n')
+			name, meaning = card.description[:first_newline], card.description[first_newline+1:]
 			descriptions += ["#{} {} ({})\n{}".format(i+1, name, slots[i], meaning)]
-			
+
 		message += "\n\n".join(descriptions)
 
 		return ResponseModel(message, output_img)
