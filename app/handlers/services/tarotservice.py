@@ -169,9 +169,27 @@ class TarotService:
 		message += "   4      7"
 		message += "```\n\n"
 
-		# Combine descriptions with "#X" in front of name
-		numbers = ["#" + str(i) + " " for i in range(1,11)]
-		message += "\n\n".join([num + card.description for num, card in zip(numbers, cards)])
+		# Define slot descriptions
+		slots = [
+			"Current situation",
+			"Opposing forces",
+			"Querent's outlook and approach",
+			"Underlying or subconscious factors",
+			"Past",
+			"Immediate future",
+			"The querent",
+			"Environment or external influences",
+			"Hopes and fears",
+			"Final outcome on current trajectory"
+		]
+
+		# Combine descriptions with "#X" in front of name and slot description before first '\n'
+		descriptions = []
+		for i, card in enumerate(cards):
+			name, meaning = card.description.split('\n')
+			descriptions += ["#{} {} ({})\n{}".format(i+1, name, slots[i], meaning)]
+			
+		message += "\n\n".join(descriptions)
 
 		return ResponseModel(message, output_img)
 
