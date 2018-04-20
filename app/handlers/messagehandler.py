@@ -247,17 +247,24 @@ class MessageHandler:
 	@general_filter
 	async def someone_say_pojo(self, message):
 		"""Responds with random message to variations of 'Pojo'."""
-		# Let's see Jerran get around this one
-		pojos = ["pojo", "p_o_j_o", "p o j o", "p-o-j-o", "plain old java object", "p()j()"]
-
 		# Lowercase
 		msg = message.content.lower()
 
-		# Remove double spaces
-		msg = ' '.join(msg.split())
+		# Quick rejection if no p or j
+		if 'p' not in msg or 'j' not in msg:
+			return None
 
 		# Convert zeros to o's
 		msg = msg.replace('0', 'o')
+
+		# Convert ()'s to o's
+		msg = msg.replace('()', 'o')
+
+		# Remove non-alphabetic characters
+		msg = re.sub('[^a-z]+', '', msg)
+
+		# Keyword matches
+		pojos = ["pojo", "plainoldjavaobject"]
 
 		# If any of the pojo matches are in msg...
 		if any(pojo in msg for pojo in pojos):
