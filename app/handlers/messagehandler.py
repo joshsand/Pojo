@@ -252,7 +252,7 @@ class MessageHandler:
 
 		# Quick rejection if no p or j
 		if 'p' not in msg or 'j' not in msg:
-			return None
+			return
 
 		# Convert zeros to o's
 		msg = msg.replace('0', 'o')
