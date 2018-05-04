@@ -45,7 +45,7 @@ The functions so far have included standard chatbot functions (Magic 8-Ball resp
   
     I don't have a tight design to these besides decoupling their input and output from discord.py classes. DiceService, for example, has an entry point `process()` that takes and returns a string, and doesn't have to know about the message or client objects.
   
-    All the services are imported into MessageHandler with `from app.handlers.services import *`. For this to work, the filenames to import must be added to __init__.py in the services package.
+    All the services are imported into MessageHandler with `from app.handlers.services import *`. For this to work, the filenames to import must be added to \_\_init\_\_.py in the services package.
   
   * **app/handlers/services/data/**
   
