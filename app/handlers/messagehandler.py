@@ -90,7 +90,8 @@ class MessageHandler:
 		Arguments: None
 		"""
 		response = 'Hey'
-		await self.client.send_message(message.channel, response)
+		# await self.client.send_message(message.channel, response)
+		await message.channel.send(response)
 
 	@rename('8ball')
 	@command
@@ -181,7 +182,8 @@ class MessageHandler:
 		data_filepath = os.path.join(this_directory, "services", "data", "cat", "cat.jpg")
 
 		with open(data_filepath, 'rb') as f:
-			await self.client.send_file(message.channel, f)
+			# await self.client.send_file(message.channel, f)
+			await message.channel.send(f)
 
 	@command
 	async def tarot(self, message):
