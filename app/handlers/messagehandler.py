@@ -183,7 +183,7 @@ class MessageHandler:
 
 		with open(data_filepath, 'rb') as f:
 			# await self.client.send_file(message.channel, f)
-			await message.channel.send(file=f, filename="cat.jpg")
+			await message.channel.send(file=discord.File(f, filename="cat.jpg"))
 
 	@command
 	async def tarot(self, message):
