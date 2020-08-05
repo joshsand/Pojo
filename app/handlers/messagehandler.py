@@ -71,16 +71,16 @@ class MessageHandler:
 				response = '**' + command + '**\n'
 				response += doc
 
-				await self.client.send_message(message.channel, response)
+				await message.channel.send(response)
 			else:
 				response = 'Command not recognized. Type `!help` to see a list of available commands.'
-				await self.client.send_message(message.channel, response)
+				await message.channel.send(response)
 		else:
 			response = "Available commands:"
 			# All keys whose functions don't have attribute "secret"
 			for command in [key for key in self.commands.keys() if not hasattr(self.commands[key], 'secret')]:
 				response += '\n • `' + command + '`'
-			await self.client.send_message(message.channel, response)
+			await message.channel.send(response)
 
 	@command
 	async def sup(self, message):
@@ -91,7 +91,6 @@ class MessageHandler:
 		Arguments: None
 		"""
 		response = 'Hey'
-		# await self.client.send_message(message.channel, response)
 		await message.channel.send(response)
 
 	@rename('8ball')
@@ -127,7 +126,7 @@ class MessageHandler:
 		]
 
 		response = random.choice(responses)
-		await self.client.send_message(message.channel, response)
+		await message.channel.send(response)
 
 	@command
 	async def dice(self, message):
@@ -140,7 +139,7 @@ class MessageHandler:
 		service = diceservice.DiceService()
 		command, remainder = self.split_by_command(message)
 		response = service.process(remainder)
-		await self.client.send_message(message.channel, response)
+		await message.channel.send(response)
 
 	@rename('secret')
 	@secret
@@ -153,7 +152,7 @@ class MessageHandler:
 		Arguments: None
 		"""
 		response = 'Shhh'
-		await self.client.send_message(message.channel, response)
+		await message.channel.send(response)
 
 	@rename('iching')
 	@command
@@ -168,7 +167,7 @@ class MessageHandler:
 		"""
 		service = ichingservice.IChingService()
 		response = service.response()
-		await self.client.send_message(message.channel, response)
+		await message.channel.send(response)
 
 	@secret
 	@command
@@ -200,7 +199,7 @@ class MessageHandler:
 		 • `pips`: Whether reading includes pips (standard numbered and face cards). Options `true` [default], `false`
 		"""
 		# Send "typing" because this one can take a few seconds
-		await self.client.send_typing(message.channel)
+		await message.channel.trigger_typing()
 
 		# Initialize responses
 		command, remainder = self.split_by_command(message)
@@ -233,18 +232,18 @@ class MessageHandler:
 
 		# Send image (if received)
 		if response_image is not None:
-			# Convert to BytesIO file-like object (necessary to send through Discord.py's send_file())
+			# Convert to BytesIO file-like object (necessary to send through Discord.py's send())
 			bytes = BytesIO()
 			response_image.save(bytes, 'PNG')
 			bytes.name = 'tarot.png'
 			bytes.seek(0)
-			
+
 			f = File(bytes, filename="tarot.png")
 			await message.channel.send(file=f)
 
 		# Send response text (if any)
 		if response_message != '':
-			await self.client.send_message(message.channel, response_message)
+			await message.channel.send(response_message)
 
 	# GENERAL FILTERS
 
@@ -296,7 +295,7 @@ class MessageHandler:
 			]
 
 			response = random.choice(responses)
-			await self.client.send_message(message.channel, response)
+			await message.channel.send(response)
 
 	@general_filter
 	async def greater_good(self, message):
@@ -307,7 +306,7 @@ class MessageHandler:
 		# If 'greater good' is found, respond in kind
 		if 'greater good' in msg:
 			response = '*The greater good*'
-			await self.client.send_message(message.channel, response)
+			await message.channel.send(response)
 
 	# TOOLS
 
