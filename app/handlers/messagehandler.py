@@ -182,9 +182,9 @@ class MessageHandler:
 		this_directory, this_filename = os.path.split(__file__)
 		data_filepath = os.path.join(this_directory, "services", "data", "cat", "cat.jpg")
 
-		with open(data_filepath, 'rb') as f:
-			# await self.client.send_file(message.channel, f)
-			await message.channel.send(file=File(f, filename="cat.jpg"))
+		with open(data_filepath, 'rb') as bytes:
+			f = File(bytes, filename="cat.jpg")
+			await message.channel.send(file=f)
 
 	@command
 	async def tarot(self, message):
@@ -238,8 +238,9 @@ class MessageHandler:
 			response_image.save(bytes, 'PNG')
 			bytes.name = 'tarot.png'
 			bytes.seek(0)
-
-			await self.client.send_file(message.channel, bytes)
+			
+			f = File(bytes, filename="tarot.png")
+			await message.channel.send(file=f)
 
 		# Send response text (if any)
 		if response_message != '':
