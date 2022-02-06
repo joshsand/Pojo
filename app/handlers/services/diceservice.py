@@ -106,7 +106,7 @@ class DiceService:
 				else:
 					raise MalformedInputError()
 		except MalformedInputError:
-			return 'Could not parse input. For formatting help, use `!help dice`.'
+			return 'Could not parse input. For formatting help, use `))help dice`.'
 		except ExcessiveQuantityError:
 			return "Please use multipliers below 100 and die faces below 1000."
 

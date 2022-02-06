@@ -277,9 +277,9 @@ class TarotService:
 		try:
 			self.validate_arguments(deck, spread, definitions, reversals, pips)
 		except DeckNotFoundError:
-			return ResponseModel('Deck not found. For a list of available decks, use `!help tarot`.')
+			return ResponseModel('Deck not found. For a list of available decks, use `))help tarot`.')
 		except SpreadNotFoundError:
-			return ResponseModel('Spread not found. For a list of available spreads, use `!help tarot`.')
+			return ResponseModel('Spread not found. For a list of available spreads, use `))help tarot`.')
 		except BadTypeError:
 			return ResponseModel('Received an unexpected argument value. For formatting help, use `!help tarot`.')
 

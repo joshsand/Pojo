@@ -38,7 +38,7 @@ class MessageHandler:
 		return func
 
 	def rename(new_name):
-		"""Decorator to change __name__ on functions when !command doesn't match the function's name."""
+		"""Decorator to change __name__ on functions when ))command doesn't match the function's name."""
 		def decorator(func):
 			func.__name__ = new_name
 			return func
@@ -51,7 +51,7 @@ class MessageHandler:
 	async def help(self, message):
 		"""Use to read instructions for any command. Call with no command specified to see a list of available commands.
 
-		Usage: `!help` or `!help 8ball`
+		Usage: `))help` or `))help 8ball`
 		Returns: Help for individual command, or list of available commands
 		Arguments: A command name (no exclamation point) or none
 		"""
@@ -73,7 +73,7 @@ class MessageHandler:
 
 				await message.channel.send(response)
 			else:
-				response = 'Command not recognized. Type `!help` to see a list of available commands.'
+				response = 'Command not recognized. Type `))help` to see a list of available commands.'
 				await message.channel.send(response)
 		else:
 			response = "Available commands:"
@@ -86,7 +86,7 @@ class MessageHandler:
 	async def sup(self, message):
 		"""A simple debug method. Say 'sup' to Pojo, Pojo responds 'Hey'.
 
-		Usage: `!sup`
+		Usage: `))sup`
 		Returns: `Hey`
 		Arguments: None
 		"""
@@ -98,7 +98,7 @@ class MessageHandler:
 	async def eight_ball(self, message):
 		"""Ask a yes/no question to Pojo's Magic 8-Ball. (You don't actually have to type a question.)
 
-		Usage: `!8ball` or `!8ball Will I graduate on time?`
+		Usage: `))8ball` or `))8ball Will I graduate on time?`
 		Returns: Random Magic 8-Ball message
 		Arguments: None (or, your yes/no question, though not actually necessary)
 		"""
@@ -132,7 +132,7 @@ class MessageHandler:
 	async def dice(self, message):
 		"""Let Pojo roll your D&D dice for you based on your provided equation. Format dice as multiplier + 'd' + number of sides (e.g., `1d20`). Supports addition and subtraction.
 
-		Usage: `!dice 1d20`, `!dice 3d10`, `!dice 2d20 - 1d6  + 10`
+		Usage: `))dice 1d20`, `))dice 3d10`, `))dice 2d20 - 1d6  + 10`
 		Returns: Total, individual rolls (if more than one)
 		Arguments: Equation to parse (see usage examples)
 		"""
@@ -147,7 +147,7 @@ class MessageHandler:
 	async def secret_command(self, message):
 		"""A simple secret debug method. Responds with 'Shhh'.
 
-		Usage: `!secret`
+		Usage: `))secret`
 		Returns: `Shhh`
 		Arguments: None
 		"""
@@ -161,7 +161,7 @@ class MessageHandler:
 
 		"Changing lines" refer to yin and yang lines in the hexagram that are subject to change. Each position contains specific directions and outcomes relevant to your situation. These changing lines flip to their opposite to create a "relating hexagram" containing further information about the context and outcome potential in your situation.
 
-		Usage: `!iching` or `!iching What will happen if I drop CST-201?` or `!iching What should my attitude be toward learning MongoDB?`
+		Usage: `))iching` or `))iching What will happen if I drop CST-201?` or `))iching What should my attitude be toward learning MongoDB?`
 		Returns: Your I Ching casting
 		Arguments: None (or, your question, though not actually necessary)
 		"""
@@ -174,7 +174,7 @@ class MessageHandler:
 	async def cat(self, message):
 		"""A test command to send a picture to a channel.
 
-		Usage: `!cat`
+		Usage: `))cat`
 		Returns: A spooky picture of Josh's cat
 		Arguments: None
 		"""
@@ -189,7 +189,7 @@ class MessageHandler:
 	async def tarot(self, message):
 		"""Let Pojo flip your tarot cards! Supports multiple decks and spreads, with options for definitions, reversed cards, and pip cards.
 
-		Usage: `!tarot` or `!tarot spread=celtic-cross pips=false deck=cbd-marseille`
+		Usage: `))tarot` or `))tarot spread=celtic-cross pips=false deck=cbd-marseille`
 		Returns: An image of your tarot spread of choice, with optional definitions.
 		Arguments:
 		 • `deck`: The tarot deck to use. Options: `tarot-waite-smith` (the iconic deck) [default], `cbd-marseille` (clean restoration of classic 1700's European design), `ancient-italian` (detailed floral late-1800's deck)
@@ -214,7 +214,7 @@ class MessageHandler:
 			if remainder is not None:
 				kwargs = self.args_to_dict(remainder)
 		except MalformedArgumentError:
-			response_message = "Arguments could not be parsed. For formatting help, use `!help tarot`."
+			response_message = "Arguments could not be parsed. For formatting help, use `))help tarot`."
 			kwargs = None
 
 		# Attempt response
@@ -223,7 +223,7 @@ class MessageHandler:
 			try:
 				response = service.response(**kwargs)
 			except TypeError:
-				response_message = "Received an unexpected argument. For all allowed arguments, use `!help tarot`."
+				response_message = "Received an unexpected argument. For all allowed arguments, use `))help tarot`."
 
 			# Get message and image from response model
 			if response is not None:
@@ -311,18 +311,20 @@ class MessageHandler:
 	# TOOLS
 
 	def split_by_command(self, message):
-		"""Return tuple of command (w/o '!') and remainder of message. (Either may be None.)"""
+		"""Return tuple of command (w/o prefix) and remainder of message. (Either may be None.)"""
+		prefix = '))'
+
 		s = message.content
 
-		# If first letter isn't !, not a command
-		if s[0] is not '!':
+		# If message doesn't start with prefix, not a command
+		if not s.startswith(prefix):
 			return None, s
 		else:
 			# Split string by spaces
 			words = s.split()
 
-			# Get command name (no '!')
-			command_name = words[0][1:]
+			# Get command name (no prefix)
+			command_name = words[0][len(prefix):]
 
 			# If message has more than one word, get remainder of message
 			if len(words) > 1:
