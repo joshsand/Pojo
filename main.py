@@ -2,20 +2,26 @@ import discord
 import os
 from app.handlers.messagehandler import MessageHandler
 
-client = discord.Client()
+class MyClient(discord.Client):
+	async def on_ready(self):
+		print('Pojo awakes')
+
+	async def on_message(self, message):
+		# If testing, ignore DMs and anything not from Testing Grounds server
+		if os.environ['ENVIRONMENT'] == 'testing' and (message.guild is None or message.guild.id != 413758117264883722):
+			return
+
+		# Ignore messages from self
+		if message.author == client.user:
+			return
+
+		await handler.parse(message)
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = MyClient(intents=intents)
 handler = MessageHandler(client)
-
-@client.event
-async def on_message(message):
-	# Ignore messages from self
-	if message.author == client.user:
-		return
-
-	await handler.parse(message)
-
-@client.event
-async def on_ready():
-	print('Pojo awakes')
 
 if 'BOT_TOKEN' in os.environ:
 	client.run(os.environ['BOT_TOKEN'])

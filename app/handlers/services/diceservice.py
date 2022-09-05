@@ -118,9 +118,9 @@ class DiceService:
 			response += '*...fine...*\n\n'
 
 		# Special scenarios for critical hits/misses on d20
-		if s == '1d20' and total is 20:
+		if s == '1d20' and total == 20:
 			response += '**CRITICAL HIT!**\n'
-		if s == '1d20' and total is 1:
+		if s == '1d20' and total == 1:
 			response += '**CRITICAL MISS!**\n'
 
 		# Print total in bold
@@ -131,7 +131,7 @@ class DiceService:
 			response += '\nIndividual rolls: ' + ', '.join([str(roll) for roll in total_rolls])
 
 		# Add snark if no dice
-		if len(total_rolls) is 0:
+		if len(total_rolls) == 0:
 			response += '\nAlways glad to help!'
 		# Add 'nice' if dice total is cool number (and user didn't just type number in)
 		elif total in [69, 420, 666]:

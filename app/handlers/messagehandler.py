@@ -199,7 +199,7 @@ class MessageHandler:
 		 • `pips`: Whether reading includes pips (standard numbered and face cards). Options `true` [default], `false`
 		"""
 		# Send "typing" because this one can take a few seconds
-		await message.channel.trigger_typing()
+		await message.channel.typing()
 
 		# Initialize responses
 		command, remainder = self.split_by_command(message)
@@ -341,14 +341,14 @@ class MessageHandler:
 		# Split string by spaces
 		for arg in s.split(' '):
 			# Return error if no ='s (stray words) or too many
-			if arg.count('=') is not 1:
+			if arg.count('=') != 1:
 				raise MalformedArgumentError()
 
 			# Split by equal sign for key and value
 			k, v = arg.split('=')
 
 			# Return error if either side empty (i.e., = at begin/end)
-			if k is '' or v is '':
+			if k == '' or v == '':
 				raise MalformedArgumentError()
 
 			# Convert to boolean
