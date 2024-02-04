@@ -245,6 +245,23 @@ class MessageHandler:
 		if response_message != '':
 			await message.channel.send(response_message)
 
+	@command
+	async def fact(self, message):
+		pass
+
+	@secret
+	@rename('dark-iching')
+	@command
+	async def dark_i_ching(self, message):
+		"""Joke method, clone of sup.
+
+		Usage: `))dark-iching`
+		Returns: `Hey`
+		Arguments: None
+		"""
+		response = 'Hey'
+		await message.channel.send(response)
+
 	# GENERAL FILTERS
 
 	@general_filter

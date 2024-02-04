@@ -15,6 +15,10 @@ class MyClient(discord.Client):
 		if message.author == client.user:
 			return
 
+		# Ignore messages from testing and prod Pojos
+		if message.author.id in (419763265632075777, 1132189951941955604):
+			return
+
 		await handler.parse(message)
 
 intents = discord.Intents.default()
