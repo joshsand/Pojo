@@ -253,13 +253,13 @@ class MessageHandler:
 	@rename('dark-iching')
 	@command
 	async def dark_i_ching(self, message):
-		"""Joke method, clone of sup.
+		"""Joke method, returns text.
 
 		Usage: `))dark-iching`
-		Returns: `Hey`
+		Returns: A special message
 		Arguments: None
 		"""
-		response = 'Hey'
+		response = '# WHAT HAVE YOU DONE'
 		await message.channel.send(response)
 
 	@command
