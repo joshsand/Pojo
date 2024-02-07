@@ -247,7 +247,15 @@ class MessageHandler:
 
 	@command
 	async def fact(self, message):
-		pass
+		"""Returns a random Pojo Fact. Can be used by the same user 5 times per day (MST).
+
+		Usage: `))fact`
+		Returns: A random Pojo Fact
+		Arguments: None
+		"""
+		service = factservice.FactService()
+		response = service.response(message.author.id)
+		await message.channel.send(response)
 
 	@secret
 	@rename('dark-iching')

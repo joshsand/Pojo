@@ -1,4 +1,4 @@
-__all__ = ['diceservice', 'ichingservice', 'tarotservice']
+__all__ = ['diceservice', 'ichingservice', 'tarotservice', 'factservice']
 
 '''
 Apparently things need to go here in order to do

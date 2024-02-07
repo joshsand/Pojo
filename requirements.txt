@@ -1,2 +1,4 @@
 discord
 Pillow
+mysql-connector-python
+redis
